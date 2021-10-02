@@ -1,0 +1,102 @@
+command /punish [<offline player>]:
+	permission: op
+	trigger:
+		if arg 1 is set:
+			wait 1 tick
+			open chest with 5 rows named "&4&lCeza Seç" to player
+			wait 1 tick
+			
+			format slot 20 of player with nether brick named "&cYasaklama" with lore "&7%arg-1% Kullanıcısını Yasakla" to close then run [execute player command "/yasaklamalar %arg-1%"]
+			format slot 22 of player with nether brick named "&cSusturma" with lore "&7%arg-1% Kullanıcısını Sustur" to close then run [execute player command "/mutelemeler %arg-1%"]
+			format slot 24 of player with nether brick named "&cUyarma" with lore "&7%arg-1% Kullanıcısını Uyar" to close then run [execute player command "/uyarılar %arg-1%"]
+			format slot 4 of player with nether star named "&cKullanıcı: &7&6%arg-1%" with lore "&cIp Adresi: &7%arg-1's ip%" to close then run [send "&cHatalı Kullanım"]
+			format slot 29 of player with emerald block named "&cYasaklamasını Kaldır" with lore "&7%arg-1% Kullanıcısının Yasağını Kaldır" to close then run [execute console command "/unban %arg-1%"]
+			format slot 31 of player with emerald block named "&cSusturmasını Kaldır" with lore "&7%arg-1% Kullanıcısının Susturmasını Kaldır" to close then run [execute console command "/unmute %arg-1%"]
+			format slot 33 of player with emerald block named "&cUyarısını Kaldır" with lore "&7%arg-1% Kullanıcısının Uyarısını Kaldır" to close then run [send "&3Uyarı &8» &b%arg-1% &fisimli kullanıcının uyarısı kaldırıldı." to all players]
+
+command /yasaklamalar [<player>]:
+	permission: op
+	trigger:
+		if arg 1 is set:
+			wait 5 tick
+			open chest with 5 rows named "&4&lYasaklama Sebebi Seç" to player
+			wait 1 tick
+				
+			format slot 4 of player with nether star named "&cKullanıcı: &7&6%arg-1%" with lore "&cIp: &7%arg-1's ip%" to close then run [send "&cHatalı Kullanım"]
+			format slot 20 of player with bedrock named "&cHile Kullanımı" with lore "&7%arg-1% Kullanıcısını Hile Kullanımından Yasakla" to close then run [execute player command "/sebepyaz %arg-1% Hile kullanımı"]
+			format slot 22 of player with bedrock named "&cTroll" with lore "&7%arg-1% Kullanıcısını Troll Davranıştan Yasakla" to close then run [execute player command "/sebepyaz %arg-1% troll"]
+			format slot 24 of player with bedrock named "&cKüfür" with lore "&7%arg-1% Kullanıcısını Küfürden Yasakla" to close then run [execute player command "/sebepyaz %arg-1% küfür hakaret"]
+			format slot 29 of player with bedrock named "&cHata Kullanımı" with lore "&7%arg-1% Kullanıcısını Hata Kullanımından Yasakla" to close then run [execute player command "/sebepyaz %arg-1% sunucu açığından yararlanma"]
+			format slot 31 of player with bedrock named "&cReklam" with lore "&7%arg-1% Kullanıcısını Reklamdan Yasakla" to close then run [execute player command "/sebepyaz %arg-1% reklam"]
+			format slot 33 of player with bedrock named "&cSunucuyu Kötülemek" with lore "&7%arg-1% Kullanıcısını Sunucuyu Kötülemekten Yasakla" to close then run [execute player command "/sebepyaz %arg-1% sunucuyu kötüleme"]
+				
+command /sebepyaz [<player>] [<text>]:
+	permission: op
+	trigger:
+		if arg 1 is set:
+			if arg 2 is set:
+				wait 5 tick
+				open chest with 5 rows named "&4&lYasaklama Süresi Seç" to player
+				wait 1 tick
+				
+				format slot 3 of player with nether star named "&cKullanıcı: &7&6%arg-1%" with lore "&cIp: &7%arg-1's ip%" to close then run [send "&cHatalı Kullanım"]
+				format slot 4 of player with obsidian named "&bCraxy&fNW" with lore "&cCoded By &6xCraweL" to close then run [send "&cHatalı Kullanım"]
+				format slot 5 of player with nether star named "&cKullanıcı: &7&6%arg-1%" with lore "&cSebep: &7%arg-2%" to close then run [send "&cHatalı Kullanım"]
+				format slot 20 of player with bedrock named "&c30 Dakika Yasakla" with lore "&cSebep: &7%arg-2%" to close then run [execute console command "/tempban %arg-1% 30m &c%arg-2%"]
+				format slot 22 of player with bedrock named "&c1 Saat Yasakla" with lore "&cSebep: &7%arg-2%" to close then run [execute console command "/tempban %arg-1% 1h &c%arg-2%"]
+				format slot 24 of player with bedrock named "&c4 Saat Yasakla" with lore "&cSebep: &7%arg-2%" to close then run [execute console command "/tempban %arg-1% 4h &c%arg-2%"]
+				format slot 29 of player with bedrock named "&c1 Gün Yasakla" with lore "&cSebep: &7%arg-2%" to close then run [execute console command "/tempban %arg-1% 1d &c%arg-2%"]
+				format slot 31 of player with bedrock named "&c1 Hafta Yasakla" with lore "&cSebep: &7%arg-2%" to close then run [execute console command "/tempban %arg-1% 7d &c%arg-2%"]
+				format slot 33 of player with bedrock named "&cKalıcı Yasakla" with lore "&cSebep: &7%arg-2%" to close then run [execute console command "/ban %arg-1% &c%arg-2%"]
+				
+command /mutelemeler [<player>]:
+	permission: op
+	trigger:
+		if arg 1 is set:
+			wait 5 tick
+			open chest with 5 rows named "&4&lMuteleme Sebebi Seç" to player
+			wait 1 tick
+				
+			format slot 4 of player with nether star named "&cKullanıcı: &7&6%arg-1%" with lore "&cIp: &7%arg-1's ip%" to close then run [send "&cHatalı Kullanım"]
+			format slot 20 of player with bedrock named "&cArgo" with lore "&7%arg-1% Kullanıcısını Argodan Sustur" to close then run [execute player command "/sebepyazmute %arg-1% Argo"]
+			format slot 22 of player with bedrock named "&cTroll" with lore "&7%arg-1% Kullanıcısını Troll Davranıştan Sustur" to close then run [execute player command "/sebepyazmute %arg-1% troll"]
+			format slot 24 of player with bedrock named "&cKüfür" with lore "&7%arg-1% Kullanıcısını Küfürden Sustur" to close then run [execute player command "/sebepyazmute %arg-1% küfür hakaret"]
+			format slot 29 of player with bedrock named "&cKışkırtma" with lore "&7%arg-1% Kullanıcısını Kışkırtmadan Sustur" to close then run [execute player command "/sebepyazmute %arg-1% kışkırtma"]
+			format slot 31 of player with bedrock named "&cReklam" with lore "&7%arg-1% Kullanıcısını Reklamdan Sustur" to close then run [execute player command "/sebepyazmute %arg-1% reklam"]
+			format slot 33 of player with bedrock named "&cSunucuyu Kötülemek" with lore "&7%arg-1% Kullanıcısını Sunucuyu Kötülemekten Sustur" to close then run [execute player command "/sebepyazmute %arg-1% sunucuyu kötüleme"]
+			
+command /sebepyazmute [<player>] [<text>]:
+	permission: op
+	trigger:
+		if arg 1 is set:
+			if arg 2 is set:
+				wait 5 tick
+				open chest with 5 rows named "&4&lYasaklama Süresi Seç" to player
+				wait 1 tick
+				
+				format slot 3 of player with nether star named "&cKullanıcı: &7&6%arg-1%" with lore "&cIp: &7%arg-1's ip%" to close then run [send "&cHatalı Kullanım"]
+				format slot 4 of player with obsidian named "&bCraxy&fNW" with lore "&cCoded By &6xCraweL" to close then run [send "&cHatalı Kullanım"]
+				format slot 5 of player with nether star named "&cKullanıcı: &7&6%arg-1%" with lore "&cSebep: &7%arg-2%" to close then run [send "&cHatalı Kullanım"]
+				format slot 20 of player with bedrock named "&c10 Dakika Sustur" with lore "&cSebep: &7%arg-2%" to close then run [execute console command "/mute %arg-1% 10m &c%arg-2%"]
+				format slot 22 of player with bedrock named "&c30 Dakika Sustur" with lore "&cSebep: &7%arg-2%" to close then run [execute console command "/mute %arg-1% 30m &c%arg-2%"]
+				format slot 24 of player with bedrock named "&c1 Saat Sustur" with lore "&cSebep: &7%arg-2%" to close then run [execute console command "/mute %arg-1% 1h &c%arg-2%"]
+				format slot 29 of player with bedrock named "&c2 Gün Sustur" with lore "&cSebep: &7%arg-2%" to close then run [execute console command "/mute %arg-1% 2d &c%arg-2%"]
+				format slot 31 of player with bedrock named "&c4 Gün Sustur" with lore "&cSebep: &7%arg-2%" to close then run [execute console command "/mute %arg-1% 4d &c%arg-2%"]
+				format slot 33 of player with bedrock named "&cKalıcı Sustur" with lore "&cSebep: &7%arg-2%" to close then run [execute console command "/mute %arg-1% 1y &c%arg-2%"]
+				
+command /uyarılar [<player>]:
+	permission: op
+	trigger:
+		if arg 1 is set:
+			wait 5 tick
+			open chest with 5 rows named "&4&lMuteleme Sebebi Seç" to player
+			wait 1 tick
+				
+			format slot 4 of player with nether star named "&cKullanıcı: &7&6%arg-1%" with lore "&cIp: &7%arg-1's ip%" to close then run [send "&cHatalı Kullanım"]
+			format slot 20 of player with bedrock named "&cArgo" with lore "&7%arg-1% Kullanıcısını Argodan Uyar" to close then run [send "&3Uyarı &8» &b%arg-1% &fİsimli Kullanıcı Argo Kullanımından Uyarıldı." to all players]
+			format slot 22 of player with bedrock named "&cTroll" with lore "&7%arg-1% Kullanıcısını Troll Davranıştan Uyar" to close then run [send "&3Uyarı &8» &b%arg-1% &fİsimli Kullanıcı Troll Davranıştan Uyarıldı." to all players]
+			format slot 24 of player with bedrock named "&cKüfür" with lore "&7%arg-1% Kullanıcısını Küfürden Uyar" to close then run [send "&3Uyarı &8» &b%arg-1% &fİsimli Kullanıcı Küfür Kullanımından Uyarıldı." to all players]
+			format slot 29 of player with bedrock named "&cKışkırtma" with lore "&7%arg-1% Kullanıcısını Kışkırtmadan Uyar" to close then run [send "&3Uyarı &8» &b%arg-1% &fİsimli Kullanıcı Kışkırtmaktan Uyarıldı." to all players]
+			format slot 31 of player with bedrock named "&cReklam" with lore "&7%arg-1% Kullanıcısını Reklamdan Uyar" to close then run [send "&3Uyarı &8» &b%arg-1% &fİsimli Kullanıcı Reklamdan Uyarıldı." to all players]
+			format slot 33 of player with bedrock named "&cSunucuyu Kötülemek" with lore "&7%arg-1% Kullanıcısını Sunucuyu Kötülemekten Uyar" to close then run [send "&3Uyarı &8» &b%arg-1% &fİsimli Kullanıcı Sunucuyu Kötülemekten Uyarıldı." to all players]
+
